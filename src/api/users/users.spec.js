@@ -93,7 +93,7 @@ describe('DELETE /users/id', () => {
   });
 });
 
-describe.only('POST /users', () => {
+describe('POST /users', () => {
   const users = [ {name: 'qwer'}, {name: 'asdf'}, {name: 'zxcv'} ];
   before(() => { return models.sequelize.sync({force: true}); });
   before(() => { return models.User.bulkCreate(users); });
@@ -136,7 +136,7 @@ describe.only('POST /users', () => {
   });
 });
 
-describe('PUT /users/id', () => {
+describe.only('PUT /users/id', () => {
   const users = [ {name: 'qwer'}, {name: 'asdf'}, {name: 'zxcv'} ];
   before(() => { return models.sequelize.sync({force: true}); });
   before(() => { return models.User.bulkCreate(users); });
@@ -177,7 +177,7 @@ describe('PUT /users/id', () => {
       request(app)
         .put('/users/2')
         .expect(409)
-        .send({name: 'dan'})
+        .send({name: 'zxcv'})
         .end(done);
     });
   });

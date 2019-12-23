@@ -42,20 +42,29 @@ export const create = async(req, res) => {
   }
 };
 
-export const update = (req, res) => {
+export const update = async(req, res) => {
   const id = parseInt(req.params.id, 10);
   if (Number.isNaN(id)) return res.status(400).end();
 
   const name = req.body.name;
   if (!name) return res.status(400).end();
+  
+  models.User.findOne({where :{id}})
+  .then(user => {
+    if (!user) return res.status(404).end();
 
-  const user = users.filter(user => user.id === id)[0];
-  if (!user) return res.status(404).end();
-
-  const isConflict = users.filter(user => user.name === name).length;
-  if (isConflict) return res.status(409).end();
-
-  user.name = name;
-  res.json(user);
+    user.name = name;
+    user.save()
+      .then(_ => {
+        res.json(user);
+      })
+      .catch(err => {
+        if (err.name === 'SequelizeUniqueConstraintError'){
+          return res.status(409).end();
+        }
+        res.status(500).end();
+      });
+  });
+  
 };
 
