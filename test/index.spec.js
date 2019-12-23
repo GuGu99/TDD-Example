@@ -116,3 +116,18 @@ describe('POST /users', () => {
     }); 
   });
 });
+
+describe('PUT /users/id', () => {
+  describe('성공시', () => {
+    it('변경된 name을 응답한다', (done) => {
+      const name = 'dan';
+      request(app)
+        .put('/users/2')
+        .send({name})
+        .end((_, res) => {
+          res.body.should.have.property('name', name);
+          done();
+        });
+    });
+  });
+});
