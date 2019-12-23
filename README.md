@@ -1,2 +1,2 @@
 # TDD-Study
-API Server Testing with Jest + Supertest
+API Server Testing with Mocha + Supertest
