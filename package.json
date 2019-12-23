@@ -18,8 +18,8 @@
     "supertest": "^4.0.2"
   },
   "scripts": {
-    "start": "node src/index.js",
-    "restart": "nodemon src/index.js",
+    "start": "babel-node src/index.js",
+    "restart": "nodemon --exec babel-node src/index.js",
     "test": "mocha --require esm"
   },
   "repository": {
