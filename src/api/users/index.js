@@ -6,7 +6,7 @@ import * as userController from './users.ctrl';
 router.get('/', userController.index);
 
 router.get('/:id', userController.show); 
-router.delete('/:id', userController.destory);
+router.delete('/:id', userController.destroy);
 router.post('/', userController.create)
 router.put('/:id', userController.update);
 
