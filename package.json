@@ -18,9 +18,9 @@
     "supertest": "^4.0.2"
   },
   "scripts": {
-    "start": "babel-node src/index.js",
-    "restart": "nodemon --exec babel-node src/index.js",
-    "test": "mocha --require esm"
+    "start": "babel-node bin/www.js",
+    "restart": "nodemon --exec babel-node bin/www.js",
+    "test": "mocha --require esm src/api/users/users.spec.js"
   },
   "repository": {
     "type": "git",
