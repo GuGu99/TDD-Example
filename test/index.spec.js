@@ -40,7 +40,21 @@ describe('GET /users/id', () => {
         .end((_, res) => {
           res.body.should.have.property('id', 1);
           done();
-        })
+        });
+    });
+  });
+  describe('실패시', () => {
+    it('id가 숫자가 아닐 경우 400으로 응답', (done) => {
+      request(app)
+        .get('/users/one')
+        .expect(400)
+        .end(done);
+    });
+    it('id를 찾을 수 없을 경우 404로 응답', (done) => {
+      request(app)
+        .get('/users/999')
+        .expect(404)
+        .end(done);
     });
   });
 });
