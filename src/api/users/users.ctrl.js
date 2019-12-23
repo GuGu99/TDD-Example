@@ -29,17 +29,17 @@ export const destroy = async(req, res) => {
   res.status(204).end();
 };
 
-export const create = (req, res) => {
+export const create = async(req, res) => {
   const name = req.body.name;
   if (!name) return res.status(404).end();
 
-  const nameIsExist = users.filter((user) => user.name === name).length;
-  if (nameIsExist) return res.status(409).end();
-
-  const id = Date.now();
-  const user = {id, name};
-  users.push(user);
-  res.status(201).json(user);
+  try{
+    const createdData = await models.User.create({name});
+    res.status(201).json(createdData);
+  } catch (err){
+    const errStatusCode = (err.name === 'SequelizeUniqueConstraintError') ? 409 : 500;
+    res.status(errStatusCode).end();
+  }
 };
 
 export const update = (req, res) => {
