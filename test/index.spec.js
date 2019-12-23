@@ -99,4 +99,20 @@ describe('POST /users', () => {
       body.should.have.property('name', name);
     });
   });
+  describe('실패시', () => {
+    it('name 파라미터 누락시 404 반환', (done) => {
+      request(app)
+        .post('/users')
+        .send({})
+        .expect(404)
+        .end(done);
+    });
+    it('name 중복일 시 409 반환', (done) => {
+      request(app)
+        .post('/users')
+        .send({name: 'gugu'})
+        .expect(409)
+        .end(done);
+    }); 
+  });
 });
