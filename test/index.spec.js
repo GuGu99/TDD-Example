@@ -1,14 +1,33 @@
-import app from '../src/index';
 import request from 'supertest';
+import should from 'should';
+
+import app from '../src/index';
 
 describe('GET /users', () => {
-  it('get all users', (done) => {
-    request(app)
-    .get('/users')
-    .end((_, res) => {
-      console.log(res.body);
-      done();
+  describe('성공시', () => {
+    it('유저 객체를 담은 배열로 응답', (done) => {
+      request(app)
+        .get('/users')
+        .end((_, res) => {
+          res.body.should.be.instanceOf(Array);
+          done();
+        });
     });
-    
+    it('최대 limit 갯수만큼 응답', (done) => {
+      request(app)
+        .get('/users?limit=2')
+        .end((_, res) => {
+          res.body.should.have.lengthOf(2)
+          done();
+        });
+    });
+  });
+  describe('실패시', () => {
+    it('limit이 숫자형이 아니면 400을 반환', (done) => {
+      request(app)
+        .get('/users?limit=two')
+        .expect(400)
+        .end(done);
+    });
   });
 });
