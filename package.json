@@ -4,13 +4,19 @@
   "description": "API Server Testing with Mocha + Supertest",
   "main": "index.js",
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "express": "^4.17.1",
     "morgan": "^1.9.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "esm": "^3.2.25",
+    "mocha": "^6.2.2",
+    "nodemon": "^2.0.2"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node src/index.js",
+    "restart": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",
@@ -21,5 +27,6 @@
   "bugs": {
     "url": "https://github.com/GuGu99/TDD-Study/issues"
   },
-  "homepage": "https://github.com/GuGu99/TDD-Study#readme"
+  "homepage": "https://github.com/GuGu99/TDD-Study#readme",
+  "keywords": []
 }
