@@ -43,6 +43,14 @@ app.delete('/users/:id', (req, res) => {
   res.status(204).end();
 });
 
+app.post('/users', (req, res) => {
+  const name = req.body.name;
+  const id = Date.now();
+  const user = {id, name};
+  users.push(user);
+  res.status(201).json(user);
+});
+
 app.listen(3000, () => {
   console.log(`Server Running!`);
 });

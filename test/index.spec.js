@@ -72,8 +72,31 @@ describe('DELETE /users/id', () => {
     it('id가 숫자가 아니면 400을 응답한다', (done) => {
       request(app)
         .delete('/users/one')
-        .expect(404)
+        .expect(400)
         .end(done);
+    });
+  });
+});
+
+describe('POST /users', () => {
+  describe('성공시', () => {
+    let name = 'gugu', 
+        body;
+    before(done => {
+      request(app)
+        .post('/users')
+        .send({name})
+        .expect(201)
+        .end((_, res) => {
+          body = res.body;
+          done();
+        });
+    });
+    it('생성된 유저 객체를 반환한다', () => {
+      body.should.have.property('id')
+    });
+    it('입력한 name을 반환한다', () => {
+      body.should.have.property('name', name);
     });
   });
 });
