@@ -2,9 +2,7 @@ import request from 'supertest';
 import should from 'should';
 
 import app from '../../index';
-import models from '../../../models';
-
-
+import models from '../../model/models';
 
 describe('GET /users', () => {
   const users = [ {name: 'qwer'}, {name: 'asdf'}, {name: 'zxcv'} ];
@@ -136,7 +134,7 @@ describe('POST /users', () => {
   });
 });
 
-describe.only('PUT /users/id', () => {
+describe('PUT /users/id', () => {
   const users = [ {name: 'qwer'}, {name: 'asdf'}, {name: 'zxcv'} ];
   before(() => { return models.sequelize.sync({force: true}); });
   before(() => { return models.User.bulkCreate(users); });

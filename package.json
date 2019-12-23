@@ -20,8 +20,8 @@
     "supertest": "^4.0.2"
   },
   "scripts": {
-    "start": "babel-node bin/www.js",
-    "restart": "nodemon --exec babel-node bin/www.js",
+    "start": "babel-node src/bin/www.js",
+    "restart": "nodemon --exec babel-node src/bin/www.js",
     "test": "NODE_ENV=test mocha --require esm src/api/users/users.spec.js -w" 
   },
   "repository": {

@@ -1,4 +1,4 @@
-import models from '../../../models';
+import models from '../../model/models';
 
 export const index = async(req, res) => {
   req.query.limit = req.query.limit || 10;

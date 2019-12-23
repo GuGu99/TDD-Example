@@ -1,4 +1,4 @@
-import app from '../src/index';
+import app from '../index';
 import syncDb from './sync-db';
 
 syncDb().then(_ => {
