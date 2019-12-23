@@ -12,11 +12,13 @@
   "devDependencies": {
     "esm": "^3.2.25",
     "mocha": "^6.2.2",
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "should": "^13.2.3"
   },
   "scripts": {
     "start": "node src/index.js",
-    "restart": "nodemon src/index.js"
+    "restart": "nodemon src/index.js",
+    "test": "mocha --require esm"
   },
   "repository": {
     "type": "git",
