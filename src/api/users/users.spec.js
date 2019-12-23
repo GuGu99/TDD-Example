@@ -4,7 +4,7 @@ import should from 'should';
 import app from '../../index';
 import models from '../../../models';
 
-describe.only('GET /users', () => {
+describe('GET /users', () => {
   describe('성공시', () => {
     const users = [ {name: 'qwer'}, {name: 'asdf'}, {name: 'zxcv'} ];
     before(() => { return models.sequelize.sync({force: true}); });
@@ -37,7 +37,7 @@ describe.only('GET /users', () => {
   });
 });
 
-describe('GET /users/id', () => {
+describe.only('GET /users/id', () => {
   describe('성공시', () => {
     it('id가 1인 유저를 반환한다.', (done) => {
       request(app)
