@@ -2,9 +2,14 @@ import request from 'supertest';
 import should from 'should';
 
 import app from '../../index';
+import models from '../../../models';
 
-describe('GET /users', () => {
+describe.only('GET /users', () => {
   describe('성공시', () => {
+    const users = [ {name: 'qwer'}, {name: 'asdf'}, {name: 'zxcv'} ];
+    before(() => { return models.sequelize.sync({force: true}); });
+    before(() => { return models.User.bulkCreate(users); });
+
     it('유저 객체를 담은 배열로 응답', (done) => {
       request(app)
         .get('/users')
@@ -17,7 +22,7 @@ describe('GET /users', () => {
       request(app)
         .get('/users?limit=2')
         .end((_, res) => {
-          res.body.should.have.lengthOf(2)
+          res.body.should.have.lengthOf(2);
           done();
         });
     });

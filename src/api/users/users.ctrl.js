@@ -1,16 +1,14 @@
-let users = [
-  {id:1, name: 'qwer'},
-  {id:2, name: 'asdf'},
-  {id:3, name: 'zxcv'}
-];
+import models from '../../../models';
 
-export const index = (req, res) => {
+export const index = async(req, res) => {
   req.query.limit = req.query.limit || 10;
   const limit = parseInt(req.query.limit, 10);
-  if (Number.isNaN(limit)) {
-    return res.status(400).end();
-  }
-  res.json(users.slice(0, limit));
+  if (Number.isNaN(limit)) return res.status(400).end();
+  
+  const users = await models.User.findAll({limit: limit});
+  res.json(users);
+
+  // res.json(users.slice(0, limit));
 };
 
 export const show = (req, res) => {
