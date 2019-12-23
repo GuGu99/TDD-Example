@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-const users = [
+let users = [
   {id:1, name: 'qwer'},
   {id:2, name: 'asdf'},
   {id:3, name: 'zxcv'}
@@ -29,6 +29,12 @@ app.get('/users/:id', (req, res) => {
 
   res.json(user);
 }); 
+
+app.delete('/users/:id', (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  users = users.filter( user => user.id !== id );
+  res.status(204).end();
+});
 
 app.listen(3000, () => {
   console.log(`Server Running!`);
