@@ -1,5 +1,10 @@
-const express = require('express');
+import express from 'express';
+import bodyParser from 'body-parser';
+
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 let users = [
   {id:1, name: 'qwer'},
@@ -42,4 +47,4 @@ app.listen(3000, () => {
   console.log(`Server Running!`);
 });
 
-module.exports = app;
+export default app;
