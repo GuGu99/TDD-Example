@@ -22,7 +22,7 @@
   "scripts": {
     "start": "babel-node src/bin/www.js",
     "restart": "nodemon --exec babel-node src/bin/www.js",
-    "test": "NODE_ENV=test mocha --require esm src/api/users/users.spec.js -w" 
+    "test": "NODE_ENV=test mocha --require esm src/api/users/users.spec.js -w"
   },
   "repository": {
     "type": "git",
